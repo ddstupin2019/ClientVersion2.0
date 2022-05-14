@@ -10,16 +10,17 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 
 public class ZaprosRet {
-    private String ur = "http://localhost:8080/dfgh367327ghciutfu6734_ju/";
+    private String ur = "http://localhost:8080/PS/";
     private Zapros zapros;
     private ArrayList<Integer> aray_rez;
     private boolean bol_rez;
     private Integer int_rez;
     public ZaprosRet() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://" + ur)
+                .baseUrl(ur)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         zapros = retrofit.create(Zapros.class);
@@ -27,12 +28,17 @@ public class ZaprosRet {
 
     public ArrayList<Integer> createPlayer(String gson) {
         Call<ArrayList<Integer>> call = zapros.addPlayer(gson);
-        Log.d("MY", gson);
+        Log.d("MY", "call");
         try {
             Response<ArrayList<Integer>> response = call.execute();
+            if (!response.isSuccessful()) {
+                Log.d("MY", "Ne raspsrsil"+response.errorBody());
+            }
+
             return response.body();
         } catch (IOException e) {
             e.printStackTrace();
+            Log.d("MY", "Ne r");
             return null;
         }
     }

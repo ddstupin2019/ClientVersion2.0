@@ -48,13 +48,13 @@ public class Igra1 {
             @Override
             public void run() {
                 super.run();
-        addPlayer();
-        while (!server.getStatus(player.getId())) {
-            try {
-                TimeUnit.SECONDS.sleep(10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+                addPlayer();
+                while (!server.getStatus(player.getId())) {
+                    try {
+                        TimeUnit.SECONDS.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
         }
             }
         }.start();

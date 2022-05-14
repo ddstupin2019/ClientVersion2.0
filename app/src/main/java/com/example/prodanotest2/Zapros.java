@@ -33,7 +33,7 @@ public interface Zapros {
     @GET("/setNedColPlayer")
     Call<Integer> setNedColPlayer(@Body String param);
 
-    @PUT("/createPlayer")
+    @PUT("PS/createPlayer")
     Call<ArrayList<Integer>> addPlayer(@Body String param);
 
     @PUT("/setStavka")
